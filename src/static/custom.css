@@ -7,3 +7,9 @@ h2,
 h3 {
     text-align: center;
 }
+
+#map {
+    width : 50%;
+    margin : auto;
+    height : 300px
+}
