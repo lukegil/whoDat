@@ -38,8 +38,7 @@ def get_geo(ip):
     geo_dict : type - Dictionary
     geo_dict : about - a dictionary of city, state, country, and lat-long
     """
-
-    assert isinstance(ip, unicode)
+    assert isinstance(ip, str)
 
     try: 
         r = requests.get("http://freegeoip.net/json/{}".format(ip))
