@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    </link>
+    <link rel="stylesheet" type="text/css" href="{{data.style_url}}">
+    </link>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+    <h1>Hello! Your IP Address is {{ data.ip }}</h1>
+    <h2>You are visiting this website on a {{ data.user_agent.device}} running {{ data.user_agent.os }} {{data.user_agent.os_v}}.{{data.user_agent.os_v2}} </h2>
+
+    <h3>You are currently in {{data.geo.city}}, {{data.geo.region_code}}, {{data.geo.country_code}}</h3>
+
+    {% if data.geo.latitude and data.geo.longitude %}
+    <div id="map"></div>
+    <script>
+        var map;
+        var lat = {{data.geo.latitude}};
+
+        var long = {{data.geo.longitude}};
+
+        
+        
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: lat,
+                    lng: long
+                },
+                zoom: 8
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{data.api_key}}&callback=initMap" async defer></script>
+    {% endif %}
+</body>
+
+</html>
