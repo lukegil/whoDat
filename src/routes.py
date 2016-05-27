@@ -13,8 +13,9 @@ def init():
     headers = {}
     for key,value in request.headers:
         headers[key] = value
-    data["ip"] = headers["Host"]
     data["user_agent"] = control.parse_ua(headers["User-Agent"])
+
+    data["ip"] = request.remote_addr
 
     data["geo"] = control.get_geo(data["ip"])
     data["api_key"] = "AIzaSyBjOQ-fEaoQTO29FSZ-kTM0A28MVCVh8RQ"
