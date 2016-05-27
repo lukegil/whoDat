@@ -10,9 +10,13 @@
 </head>
 
 <body>
+    <div class="container">
     <h1>Hello! Your IP Address is {{ data.ip }}</h1>
-    <h2>You are visiting this website on a {{ data.user_agent.device}} running {{ data.user_agent.os }} {{data.user_agent.os_v}}.{{data.user_agent.os_v2}} </h2>
+    <h2>You are visiting this website on a {{ data.user_agent.browser}} v. {{ data.user_agent.browser_version }} running {{ data.user_agent.os }} {{data.user_agent.os_v}}.{{data.user_agent.os_v2}} </h2>
 
+        
+        {% if data.geo.country_name %}
+        
     <h3>You are currently in {{data.geo.city}}, {{data.geo.region_code}}, {{data.geo.country_code}}</h3>
 
     {% if data.geo.latitude and data.geo.longitude %}
@@ -38,6 +42,8 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key={{data.api_key}}&callback=initMap" async defer></script>
     {% endif %}
+        {% endif %}
+    </div>
 </body>
 
 </html>
